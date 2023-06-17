@@ -25,7 +25,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan("com.snw")
-@PropertySource({ "classpath:persistence-oracle.properties" })
+@PropertySource({"classpath:persistence.properties"})
 public class AppConfig implements WebMvcConfigurer {
 
 	@Autowired

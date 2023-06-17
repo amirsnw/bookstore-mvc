@@ -8,53 +8,53 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.snw.entity.Customer;
+import com.snw.entity.Book;
 
 @Repository
-public class CustomerDAOImpl implements CustomerDAO {
+public class BookDAOImpl implements BookDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 			
 	@Override
-	public List<Customer> get() {
+	public List<Book> get() {
 		
 		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 				
 		// create a query  ... sort by last name
-		Query<Customer> theQuery = 
-				currentSession.createQuery("from Customer order by lastName",
-											Customer.class);
+		Query<Book> theQuery =
+				currentSession.createQuery("from Book order by title",
+											Book.class);
 		
 		// execute query and get result list
-		List<Customer> customers = theQuery.getResultList();
+		List<Book> books = theQuery.getResultList();
 				
 		// return the results		
-		return customers;
+		return books;
 	}
 
 	@Override
-	public void save(Customer theCustomer) {
+	public void save(Book theBook) {
 
 		// get current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		// save/upate the customer ... finally LOL
-		currentSession.saveOrUpdate(theCustomer);
+		// save/upate the book ... finally LOL
+		currentSession.saveOrUpdate(theBook);
 		
 	}
 
 	@Override
-	public Customer get(int theId) {
+	public Book get(int theId) {
 
 		// get the current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		// now retrieve/read from database using the primary key
-		Customer theCustomer = currentSession.get(Customer.class, theId);
+		Book theBook = currentSession.get(Book.class, theId);
 		
-		return theCustomer;
+		return theBook;
 	}
 
 	@Override
@@ -65,8 +65,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		// delete object with primary key
 		Query theQuery = 
-				currentSession.createQuery("delete from Customer where id=:customerId");
-		theQuery.setParameter("customerId", theId);
+				currentSession.createQuery("delete from Book where id=:bookId");
+		theQuery.setParameter("bookId", theId);
 		
 		theQuery.executeUpdate();		
 	}
