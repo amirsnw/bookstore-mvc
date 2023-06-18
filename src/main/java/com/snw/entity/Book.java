@@ -1,5 +1,7 @@
 package com.snw.entity;
 
+import com.snw.validation.BookTitle;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +17,8 @@ public class Book {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
-	
+
+	@BookTitle
 	@Column(name="title")
 	private String title;
 	
