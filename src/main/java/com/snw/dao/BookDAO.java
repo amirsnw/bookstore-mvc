@@ -12,6 +12,8 @@ public interface BookDAO {
 
 	public Book get(int theId);
 
+	public List<Book> getByTitle(String title);
+
 	public void delete(int theId);
 	
 }

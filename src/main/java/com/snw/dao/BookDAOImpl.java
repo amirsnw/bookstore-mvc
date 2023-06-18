@@ -53,8 +53,26 @@ public class BookDAOImpl implements BookDAO {
 		
 		// now retrieve/read from database using the primary key
 		Book theBook = currentSession.get(Book.class, theId);
-		
+
 		return theBook;
+	}
+
+	@Override
+	public List<Book> getByTitle(String title) {
+
+		// get the current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+
+		// get books by title
+		Query<Book> theQuery =
+				currentSession.createQuery("from Book where title=:title " +
+								"order by title",
+						Book.class);
+		theQuery.setParameter("title", title);
+		List<Book> books = theQuery.getResultList();
+
+		// return the results
+		return books;
 	}
 
 	@Override
@@ -72,14 +90,3 @@ public class BookDAOImpl implements BookDAO {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -18,19 +18,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/books/v2")
 public class BookRestController {
 
 	@Autowired
 	private BookService bookService;
 
-	@GetMapping("/books")
+	@GetMapping
 	public List<Book> getBooks() {
 		
 		return bookService.getBooks();
 	}
 	
-	@GetMapping("/books/{bookId}")
+	@GetMapping("/{bookId}")
 	public Book getBook(@PathVariable int bookId) {
 		
 		Book theBook = bookService.getBook(bookId);
@@ -42,7 +42,7 @@ public class BookRestController {
 		return theBook;
 	}
 	
-	@PostMapping("/books")
+	@PostMapping
 	public Book addBook(@RequestBody Book theBook) {
 		
 		// also just in case the pass an id in JSON ... set id to 0
@@ -55,7 +55,7 @@ public class BookRestController {
 		return theBook;
 	}
 	
-	@PutMapping("/books")
+	@PutMapping
 	public Book updateBook(@RequestBody Book theBook) {
 		
 		bookService.saveBook(theBook);

@@ -38,6 +38,13 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	@Transactional
+	public List<Book> findBooks(String title) {
+
+		return bookDAO.getByTitle(title);
+	}
+
+	@Override
+	@Transactional
 	public void deleteBook(int theId) {
 		
 		bookDAO.delete(theId);
